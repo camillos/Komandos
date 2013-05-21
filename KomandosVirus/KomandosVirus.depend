@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1369146655 source:c:\users\hack\documents\github\komandos\komandosvirus\main.cpp
+	<iostream>
+	<windows.h>
+
