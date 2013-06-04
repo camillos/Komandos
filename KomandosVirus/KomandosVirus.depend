@@ -1,13 +1,22 @@
 # depslib dependency file v1.0
-1370371085 source:c:\users\hack\documents\github\komandos\komandosvirus\main.cpp
+1370375461 source:c:\users\hack\documents\github\komandos\komandosvirus\main.cpp
 	<iostream>
+	<windows.h>
 	"Replicator.h"
+	"TaskMgr.h"
 
-1370371172 source:c:\users\hack\documents\github\komandos\komandosvirus\replicator.cpp
+1370375391 source:c:\users\hack\documents\github\komandos\komandosvirus\replicator.cpp
 	"Replicator.h"
+	<iostream>
+	<windows.h>
 
-1370371172 c:\users\hack\documents\github\komandos\komandosvirus\replicator.h
+1370372237 c:\users\hack\documents\github\komandos\komandosvirus\replicator.h
 	"Definitions.h"
 
 1370371085 c:\users\hack\documents\github\komandos\komandosvirus\definitions.h
+
+1370371621 source:c:\users\hack\documents\github\komandos\komandosvirus\taskmgr.cpp
+	"TaskMgr.h"
+
+1370371621 c:\users\hack\documents\github\komandos\komandosvirus\taskmgr.h
 

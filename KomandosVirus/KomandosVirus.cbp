@@ -32,6 +32,11 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="Definitions.h" />
+		<Unit filename="Replicator.cpp" />
+		<Unit filename="Replicator.h" />
+		<Unit filename="TaskMgr.cpp" />
+		<Unit filename="TaskMgr.h" />
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<code_completion />
