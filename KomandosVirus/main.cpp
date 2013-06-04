@@ -1,33 +1,23 @@
 #include <iostream>
-#include <windows.h>
 
+#include "Replicator.h"
 using namespace std;
-
-
-typedef void( * MYPROC )( const LPCSTR );
-MYPROC ShowFromDll;
-
 
 int main()
 {
-    cout << "Hello world!" << endl;
-    HINSTANCE hDll;
-    hDll = LoadLibrary("KomandosTask");
+    Replicator *replicator = new Replicator();
+    STATE state = replicator->Start();
 
-    if( hDll != NULL )
+    if(state == NOWORK)
     {
-        // jeœli wszystko posz³o dobrze, tutaj mo¿emy wywo³aæ jak¹œ funkcjê biblioteczn¹
-        cout << "Wczytano dll.." << endl;
-
-        ShowFromDll =( MYPROC ) GetProcAddress( hDll, "SomeFunction" );
-        if( ShowFromDll != NULL )
-        {
-            cout << "znaleziono" << endl;
-            (ShowFromDll)("Dziala dll");
-        }
-
-        FreeLibrary( hDll );
+        delete replicator;
+        return 0;
     }
 
+
+
+
+
+    delete replicator;
     return 0;
 }

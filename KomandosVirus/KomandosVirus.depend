@@ -1,5 +1,13 @@
 # depslib dependency file v1.0
-1369146655 source:c:\users\hack\documents\github\komandos\komandosvirus\main.cpp
+1370371085 source:c:\users\hack\documents\github\komandos\komandosvirus\main.cpp
 	<iostream>
-	<windows.h>
+	"Replicator.h"
+
+1370371172 source:c:\users\hack\documents\github\komandos\komandosvirus\replicator.cpp
+	"Replicator.h"
+
+1370371172 c:\users\hack\documents\github\komandos\komandosvirus\replicator.h
+	"Definitions.h"
+
+1370371085 c:\users\hack\documents\github\komandos\komandosvirus\definitions.h
 
