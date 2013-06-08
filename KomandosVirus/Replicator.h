@@ -5,13 +5,9 @@
 
 class Replicator
 {
-private:
-    bool IsMainCopy();
-
-
 public:
     Replicator();
-    STATE Start();
+    void Start();
     void Infect();
 
 };
