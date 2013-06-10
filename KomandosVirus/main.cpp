@@ -12,7 +12,6 @@ using namespace std;
 
 int main()
 {
-
     // Obsluga rejestru - OK!
     RegEditer *regEditer = new RegEditer();
     try
@@ -61,7 +60,7 @@ int main()
 
     cout << "OK!" << endl;
 
-    replicator->Stop();
+    //replicator->Stop();
     system("pause");
 
     delete taskMgr;
