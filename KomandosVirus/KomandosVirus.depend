@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1370699767 source:c:\users\hack\documents\github\komandos\komandosvirus\main.cpp
+1370873218 source:c:\users\hack\documents\github\komandos\komandosvirus\main.cpp
 	<iostream>
 	<windows.h>
 	"RegEditer.h"
@@ -7,13 +7,19 @@
 	"TaskMgr.h"
 	"Exception.h"
 
-1370691248 source:c:\users\hack\documents\github\komandos\komandosvirus\replicator.cpp
+1370873521 source:c:\users\hack\documents\github\komandos\komandosvirus\replicator.cpp
+	<fstream>
+	<time.h>
 	"Replicator.h"
-
-1370691253 c:\users\hack\documents\github\komandos\komandosvirus\replicator.h
 	"Definitions.h"
+	<iostream>
 
-1370371085 c:\users\hack\documents\github\komandos\komandosvirus\definitions.h
+1370873521 c:\users\hack\documents\github\komandos\komandosvirus\replicator.h
+	<windows.h>
+	<string>
+
+1370701374 c:\users\hack\documents\github\komandos\komandosvirus\definitions.h
+	<windows.h>
 
 1370371621 source:c:\users\hack\documents\github\komandos\komandosvirus\taskmgr.cpp
 	"TaskMgr.h"
@@ -26,11 +32,10 @@
 1370692055 c:\users\hack\documents\github\komandos\komandosvirus\exception.h
 	<string>
 
-1370699767 c:\users\hack\documents\github\komandos\komandosvirus\regediter.h
+1370701273 c:\users\hack\documents\github\komandos\komandosvirus\regediter.h
 	<string>
-	<windows.h>
 
-1370699767 source:c:\users\hack\documents\github\komandos\komandosvirus\regediter.cpp
+1370701146 source:c:\users\hack\documents\github\komandos\komandosvirus\regediter.cpp
 	"RegEditer.h"
 	"Exception.h"
 	<iostream>

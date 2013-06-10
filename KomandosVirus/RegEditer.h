@@ -2,7 +2,6 @@
 #define REGEDITER_H_INCLUDED
 
 #include <string>
-#include <windows.h>
 
 class RegEditer
 {
