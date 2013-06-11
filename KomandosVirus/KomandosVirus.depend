@@ -1,10 +1,12 @@
 # depslib dependency file v1.0
-1370873218 source:c:\users\hack\documents\github\komandos\komandosvirus\main.cpp
+1370947267 source:c:\users\hack\documents\github\komandos\komandosvirus\main.cpp
 	<iostream>
 	<windows.h>
 	"RegEditer.h"
 	"Replicator.h"
 	"TaskMgr.h"
+	"CmdExecutor.h"
+	"RemoteMsgMgr.h"
 	"Exception.h"
 
 1370873521 source:c:\users\hack\documents\github\komandos\komandosvirus\replicator.cpp
@@ -18,7 +20,7 @@
 	<windows.h>
 	<string>
 
-1370701374 c:\users\hack\documents\github\komandos\komandosvirus\definitions.h
+1370947190 c:\users\hack\documents\github\komandos\komandosvirus\definitions.h
 	<windows.h>
 
 1370371621 source:c:\users\hack\documents\github\komandos\komandosvirus\taskmgr.cpp
@@ -41,4 +43,24 @@
 	<iostream>
 	<fstream>
 	<Shlobj.h>
+
+1370978849 source:c:\users\hack\documents\github\komandos\komandosvirus\cmdexecutor.cpp
+	"CmdExecutor.h"
+
+1370978849 c:\users\hack\documents\github\komandos\komandosvirus\cmdexecutor.h
+	<string>
+	"TaskMgr.h"
+
+1370978648 c:\users\hack\documents\github\komandos\komandosvirus\remotemsgmgr.h
+	<winsock2.h>
+	<string>
+	"CmdExecutor.h"
+
+1370978966 source:c:\users\hack\documents\github\komandos\komandosvirus\remotemsgmgr.cpp
+	<windows.h>
+	<winsock2.h>
+	<ws2tcpip.h>
+	<string>
+	"RemoteMsgMgr.h"
+	"Exception.h"
 
