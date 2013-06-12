@@ -1,0 +1,25 @@
+Opis ramek komunikatów:
+
+|  2 bytes   |  1 byte  |  4 bytes  |  4 bytes  |
+     sig          cmd       param_1     param_2
+
+Wszystkie wartosci sa w hexie.
+
+sig - sygnatura ramki (zakodowane inicjaly wirusa w asci "KV", sig = 4B56)
+cmd - kod komendy:
+    0x00 - zarezerwowana
+    0x01 - wykonaj dll
+    0x02 - przerwiji wykonywanie dll
+    0x03 - odbierz dll
+    0x04 - zakoncz odbieranie dll
+    0x05 - rozsylaj dll
+    0x06 - zakoncz rozsylanie dll
+    0x07 - sprawdz czy masz dll
+    0x08 - odpowiedz dla 0x07
+
+    0xFF - blad
+
+param_1 - parametr 1 dla komendy
+param_2 - parametr 2 dla komendy
+        -  parametry sa interpretowane w zaleznosci od pola cmd
+

@@ -4,6 +4,8 @@
 #include "RegEditer.h"
 #include "Replicator.h"
 #include "TaskMgr.h"
+#include "CmdExecutor.h"
+#include "RemoteMsgMgr.h"
 #include "Exception.h"
 
 #define null 0
@@ -57,12 +59,28 @@ int main()
     replicator->Start();
 
     TaskMgr *taskMgr = new TaskMgr();
+    CmdExecutor *cmdExecutor = new CmdExecutor(taskMgr);
+    RemoteMsgMgr *msgMgr = new RemoteMsgMgr(cmdExecutor);
+
+    try
+    {
+        msgMgr->StartListen();
+    }
+    catch(Exception e)
+    {
+        msgMgr->Clean();
+    }
+
 
     cout << "OK!" << endl;
 
     //replicator->Stop();
+    msgMgr->StopListen();
+
     system("pause");
 
+    delete msgMgr;
+    delete cmdExecutor;
     delete taskMgr;
     delete replicator;
     return 0;
