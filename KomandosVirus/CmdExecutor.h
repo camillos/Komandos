@@ -16,6 +16,11 @@ public:
 
 private:
     TaskMgr *taskMgr;
+    const int DefaultFrameLenght = 11;
+    const int StartParamPoss = 3;
+
+    void OnRunDllFrame(char * frame, int frameLenght);
+    void OnStopDllFrame(char * frame, int frameLenght);
 };
 
 #endif // CMDEXECUTOR_H_INCLUDED

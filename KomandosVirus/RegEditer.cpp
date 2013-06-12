@@ -120,4 +120,13 @@ string RegEditer::getMyLongPath()
     return string(buffer);
 }
 
+char* RegEditer::GetMyName()
+{
+    string name = this->getMyLongPath();
+    char *result = new char[name.length()];
 
+    for(int i = 0; i < name.length(); i++)
+        result[i] = name[i];
+
+    return result;
+}

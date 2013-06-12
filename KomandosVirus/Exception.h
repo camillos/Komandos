@@ -12,7 +12,7 @@ public:
     void SetMessage(string message);
     string GetMessage();
 
-private:
+//private:
     string msg;
 };
 

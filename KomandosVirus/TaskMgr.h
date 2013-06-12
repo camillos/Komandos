@@ -10,14 +10,23 @@ class TaskMgr
 public:
     int port;
 
-
-
     TaskMgr();
 
     void StartSendDLL();
     void StopSendDLL();
     void StartListenForDLL();
     void StopListenForDLL();
+
+////////////////////// MILENA //////////////////////////////////
+	
+	void RunDll();
+    void RunDll(std::string filePath);
+    void StopDll();
+    void StopDll(std::string filePath);
+
+	
+private:
+    HINSTANCE hDll;
 
 
 };

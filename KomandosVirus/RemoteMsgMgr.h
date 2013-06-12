@@ -1,10 +1,13 @@
 #ifndef REMOTEMSGMGR_H_INCLUDED
 #define REMOTEMSGMGR_H_INCLUDED
 
+#include <windows.h>
 #include <winsock2.h>
 #include <string>
 
 #include "CmdExecutor.h"
+
+DWORD WINAPI Listenig(LPVOID lpParam);
 
 class RemoteMsgMgr
 {
@@ -13,6 +16,7 @@ public:
     ~RemoteMsgMgr();
     void StartListen();
     void StopListen();
+    void Listen();
     void Send(std::string ip, char* frame);
     void Replay(char* frame);
     void Broadcast(char* frame);
@@ -30,7 +34,9 @@ private:
     WSADATA wsa;
 
     char *receiveBuffer;
-    const int receiveBufferLength = 16;
+    const int receiveBufferLength = 1024;
+
+    HANDLE ThreadHandle;
 
 };
 

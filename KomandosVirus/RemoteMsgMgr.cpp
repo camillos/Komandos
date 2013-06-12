@@ -7,6 +7,23 @@
 #include "Exception.h"
 
 
+#include <iostream>
+
+DWORD WINAPI Listenig(LPVOID lpParam)
+{
+    RemoteMsgMgr *msgMgr = ((RemoteMsgMgr*)lpParam);
+    try
+    {
+        msgMgr->Listen();
+    }
+    catch(Exception e)
+    {
+        std::cout << e.msg << std::endl;
+    }
+
+    return 0;
+}
+
 RemoteMsgMgr::RemoteMsgMgr(CmdExecutor *cmdExecutor)
 {
     this->DefaultPort = 6666;
@@ -21,7 +38,7 @@ RemoteMsgMgr::~RemoteMsgMgr()
     delete [] receiveBuffer;
 }
 
-void RemoteMsgMgr::StartListen()
+void RemoteMsgMgr::Listen()
 {
     if(isListening)
         throw Exception("RemoteMsgMgr jest juz w trybie nasluchu.");
@@ -39,16 +56,30 @@ void RemoteMsgMgr::StartListen()
     serverSocket.sin_addr.s_addr = INADDR_ANY;
     serverSocket.sin_port = htons(DefaultPort);
 
+    // dla broadcastu
+    int options = 1;
+    if ((setsockopt(s, SOL_SOCKET, SO_BROADCAST,(char *)&options,sizeof(options))) < 0){
+        throw Exception("Nie mozna sluchac broadcastu. Kod bledu: " + WSAGetLastError());
+    }
+
     if(bind(s ,(struct sockaddr *)&serverSocket , sizeof(serverSocket)) == SOCKET_ERROR)
         throw Exception("Blad w trakcie bindowania. Kod bledu: " + WSAGetLastError());
 
+    struct sockaddr_in clientSocket2;
+
     int recv_len = 0;
-    int clientSocketLength = sizeof(clientSocket);
+    int clientSocketLength = (int)sizeof(clientSocket2);
 
     while(canRun)
     {
-        if((recv_len = recvfrom(s, receiveBuffer, receiveBufferLength, 0, (struct sockaddr *) &clientSocket, &clientSocketLength)) == SOCKET_ERROR)
+
+        if((recv_len = recvfrom(s, receiveBuffer, receiveBufferLength, 0, (struct sockaddr *) &clientSocket2, &clientSocketLength)) == SOCKET_ERROR)
+        {
+            //std::stringstream s;
+            //s << WSAGetLastError();
             throw Exception("Blad w trakcie odbierania datagramow. Kod bledu: " + WSAGetLastError());
+            //throw Exception(s.str());
+        }
 
         if(recv_len <= 0) continue;
 
@@ -62,15 +93,11 @@ void RemoteMsgMgr::StartListen()
 
         if(replay_lenght > 0)
         {
-            // w replay_lenght mamy dlugosc ramki
-            // w frame mamy ramke do odeslania
-
-            //if (sendto(s, receiveBuffer, recv_len, 0, (struct sockaddr*) &clientSocket, clientSocketLength) == SOCKET_ERROR)
-            //{
-            //    printf("\nsendto() failed with error code : %d" , WSAGetLastError());
-            //    // exit(EXIT_FAILURE);
-            //    while(1);
-            //}
+            if (sendto(s, frame, replay_lenght, 0, (struct sockaddr*) &clientSocket2, clientSocketLength) == SOCKET_ERROR)
+            {
+                delete[] frame;
+                throw Exception("Blad w trakcje wysylania odpowiedzi na komunikat. Kod bledu: " + WSAGetLastError());
+            }
         }
 
         delete [] frame;
@@ -85,6 +112,14 @@ void RemoteMsgMgr::Clean()
     WSACleanup();
     canRun = false;
     isListening = false;
+
+    WaitForMultipleObjects(1, &ThreadHandle, TRUE, INFINITE);
+    CloseHandle(ThreadHandle);
+}
+
+void RemoteMsgMgr::StartListen()
+{
+    ThreadHandle = CreateThread( NULL, 0, Listenig, this, 0, NULL);
 }
 
 void RemoteMsgMgr::StopListen()
@@ -94,4 +129,7 @@ void RemoteMsgMgr::StopListen()
 
     closesocket(s);
     WSACleanup();
+
+    WaitForMultipleObjects(1, &ThreadHandle, TRUE, INFINITE);
+    CloseHandle(ThreadHandle);
 }

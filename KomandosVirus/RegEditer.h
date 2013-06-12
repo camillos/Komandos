@@ -9,6 +9,7 @@ public:
     void Register();
     bool IsMainCopy();
     bool IsRegistered();
+    char* GetMyName();
 
 private:
     std::string getMyPath();

@@ -8,9 +8,15 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+#include <string>
+#include <iostream>
+using namespace std;
+
+
 #define PORT 20000
 #define BACKLOG 5
 #define LENGTH 512
+
 
 TaskMgr::TaskMgr()
 {
@@ -119,5 +125,50 @@ while(success == 0)
         printf("Ok received from client!\n");
         fclose(fr);
     }
+}
+
+///////////////////////////// MILENA //////////////////////////////////
+
+typedef void( * MYPROC )( const LPCSTR );
+MYPROC ShowFromDll;
+
+void TaskMgr::RunDll()
+{
+    hDll = LoadLibrary("KomandosTask");
+
+    if( hDll != NULL )
+    {
+        // jeœli wszystko posz³o dobrze, tutaj mo¿emy wywo³aæ jak¹œ funkcjê biblioteczn¹
+        cout << "Wczytano dll.." << endl;
+
+        ShowFromDll =( MYPROC ) GetProcAddress( hDll, "SomeFunction" );
+        if( ShowFromDll != NULL )
+        {
+            cout << "Wszytano" << endl;
+            (ShowFromDll)("Dziala dll");
+        }
+
+
+    }
+}
+
+void TaskMgr::RunDll(std::string filePath)
+{
+
+}
+
+void TaskMgr::StopDll()
+{
+    if(hDll != NULL)
+    {
+        std::cout << "Zatrzymuje dll" << std::endl;
+        FreeLibrary( hDll );
+        cout << "Wykonano" << endl;
+    }
+}
+
+void TaskMgr::StopDll(std::string filePath)
+{
+
 }
 

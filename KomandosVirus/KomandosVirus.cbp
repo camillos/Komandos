@@ -12,8 +12,12 @@
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Compiler>
+					<Add option="-std=c++11" />
 					<Add option="-g" />
 				</Compiler>
+				<Linker>
+					<Add option="-lwsock32" />
+				</Linker>
 			</Target>
 			<Target title="Release">
 				<Option output="bin/Release/KomandosVirus" prefix_auto="1" extension_auto="1" />
@@ -32,11 +36,17 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="CmdExecutor.cpp" />
+		<Unit filename="CmdExecutor.h" />
+		<Unit filename="Definitions.cpp" />
 		<Unit filename="Definitions.h" />
 		<Unit filename="Exception.cpp" />
 		<Unit filename="Exception.h" />
+		<Unit filename="FrameInfo.txt" />
 		<Unit filename="RegEditer.cpp" />
 		<Unit filename="RegEditer.h" />
+		<Unit filename="RemoteMsgMgr.cpp" />
+		<Unit filename="RemoteMsgMgr.h" />
 		<Unit filename="Replicator.cpp" />
 		<Unit filename="Replicator.h" />
 		<Unit filename="TaskMgr.cpp" />
